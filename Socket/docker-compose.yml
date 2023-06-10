@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  socket:
+    build: .
+    command: yarn start
+    container_name: ChatApp_Socket
+    restart: unless-stopped
+    volumes:
+      - .:/ChatApp_Socket
+      - /ChatApp_Socket/node_modules
+    ports:
+      - "9000:9000"
+    networks:
+      - postgres
+
+networks:
+  postgres:
+    driver: bridge
